@@ -1,16 +1,14 @@
-
 <?php
-include 'Data.php';
-include 'Controller.php';
-include 'View.php';
-$controller = new Controller();
 
-if(isset($_GET['data'])){
-    header('Content-type:application/json');
-    echo $controller->getData($_GET);
+include 'init.php';
+
+$db = new PDO("mysql:host=localhost;dbname=milk", 'root', '');
+
+$milkController = new MilkController(new MilkModel($db));
+
+if(isset($_POST['task'])){
+    echo $milkController->dispatch($_POST);
     die;
 }
 
-include ('form.html.php');
-
-?>
+$milkController->getFirstView();
