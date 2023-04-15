@@ -1,0 +1,10 @@
+<?php
+
+include __DIR__ . "/../app/init.php";
+
+include __DIR__ . "/./MigrationController.php";
+
+include __DIR__ . "/./MigrationModel.php";
+
+$migrationController = new MigrationController(new MigrationModel(CommonHelper::db()));
+$migrationController->init();
